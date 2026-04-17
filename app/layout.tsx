@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-black text-white overflow-x-hidden">
         
-        {/* CONTENEDOR DE FONDO (VIDEO + OVERLAY) */}
+        {/* CONTENEDOR DE FONDO CON POSTER */}
         <div className="fixed inset-0 z-0 h-full w-full overflow-hidden bg-black">
           <video
             autoPlay
@@ -30,6 +30,7 @@ export default function RootLayout({
             loop
             playsInline
             preload="auto"
+            poster="/poster-techno.jpg" // Imagen de carga
             onCanPlay={(e) => (e.currentTarget.muted = true)}
             className="h-full w-full object-cover opacity-50 grayscale"
           >
@@ -37,8 +38,8 @@ export default function RootLayout({
             <source src="/bg-techno.mp4" type="video/mp4" />
           </video>
 
-          {/* OVERLAY: Ahora tiene un z-index controlado */}
-          <div className="absolute inset-0 z-10 bg-black/60 shadow-[inset_0_0_100px_rgba(0,0,0,0.8)]"></div>
+          {/* OVERLAY TIPO CLUB */}
+          <div className="absolute inset-0 z-10 bg-black/60 shadow-[inset_0_0_150px_rgba(0,0,0,0.9)]"></div>
         </div>
 
         {/* CONTENIDO PRINCIPAL: z-20 para estar por encima del overlay */}
