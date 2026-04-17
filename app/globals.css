@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
 :root {
+  /* Negro puro para el fondo techno */
   --background: #000000;
-  --foreground: #f4f4f5; /* zinc-100 */
+  /* Zinc-100 para un blanco suave que no canse la vista */
+  --foreground: #f4f4f5;
 }
 
 @theme inline {
@@ -12,14 +14,51 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Configuración base del documento */
+html {
+  scroll-behavior: smooth;
+  /* Evita saltos visuales al aparecer el scrollbar */
+  scrollbar-gutter: stable;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
-  /* Añadimos un sutil granulado o ruido de fondo si lo deseas más adelante */
+  margin: 0;
+  /* Suavizado de fuentes profesional */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
+/* Estilo de selección de texto minimalista */
 ::selection {
   background-color: #3f3f46; /* zinc-700 */
   color: #ffffff;
+}
+
+/* Personalización sutil del scrollbar para que no rompa la estética dark */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272a; /* zinc-800 */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46; /* zinc-700 */
+}
+
+/* Clases de utilidad para el layout responsive */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
 }

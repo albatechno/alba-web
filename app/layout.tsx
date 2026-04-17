@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+"use client";
+
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -12,22 +13,40 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "ALBA | Techno DJ & Producer",
-  description: "Underground, mental techno y sets de mezcla armónica por ALBA.",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="es"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased bg-black`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col bg-black text-white overflow-x-hidden">
+        
+        {/* CONTENEDOR DE FONDO (VIDEO + OVERLAY) */}
+        <div className="fixed inset-0 z-0 h-full w-full overflow-hidden bg-black">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            onCanPlay={(e) => (e.currentTarget.muted = true)}
+            className="h-full w-full object-cover opacity-50 grayscale"
+          >
+            <source src="/bg-techno.webm" type="video/webm" />
+            <source src="/bg-techno.mp4" type="video/mp4" />
+          </video>
+
+          {/* OVERLAY: Ahora tiene un z-index controlado */}
+          <div className="absolute inset-0 z-10 bg-black/60 shadow-[inset_0_0_100px_rgba(0,0,0,0.8)]"></div>
+        </div>
+
+        {/* CONTENIDO PRINCIPAL: z-20 para estar por encima del overlay */}
+        <div className="relative z-20 flex flex-col flex-1">
+          {children}
+        </div>
+
+      </body>
     </html>
   );
 }
